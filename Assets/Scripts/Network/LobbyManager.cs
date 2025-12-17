@@ -3,6 +3,7 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -25,6 +26,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsConnectedAndReady || !PhotonNetwork.InLobby)
         {
             Debug.LogWarning("No se puede crear sala: no está en Lobby");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(roomNameInput.text))
+        {
+            statusText.text = "El nombre de la sala no puede estar vacío";
             return;
         }
 
@@ -54,18 +61,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         statusText.text = "Unido a sala";
         PhotonNetwork.LoadLevel("GameScene");
     }
+
     #endregion
 
     #region Lista de Rooms
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("Rooms recibidas: " + roomList.Count);
-
         foreach (RoomInfo room in roomList)
         {
-            Debug.Log("Room: " + room.Name +
-                      " Players: " + room.PlayerCount + "/" + room.MaxPlayers);
-
             if (room.RemovedFromList)
                 cachedRooms.Remove(room.Name);
             else
