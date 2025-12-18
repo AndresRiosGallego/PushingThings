@@ -1,9 +1,15 @@
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+
+    public TMP_Text connectionStatusText;
+    public TMP_InputField nikeName;
+
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -17,22 +23,31 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void ConnectToPhoton()
     {
+        if(nikeName.text != "")
+        {
+            PhotonNetwork.NickName = nikeName.text;
+        }
+        else
+        {
+            PhotonNetwork.NickName = "Player" + Random.Range(1000, 9999);
+        }
+
         if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
-            Debug.Log("Conectando a Photon...");
+            connectionStatusText.text = "Conectando a Photon...";
         }
     }
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Conectado al Master Server");
+        connectionStatusText.text = "Conectado al Master Server";
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
-        Debug.Log("Entró al Lobby correctamente");
+        connectionStatusText.text = "Entró al Lobby correctamente";
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Lobby")
         {
@@ -52,5 +67,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //}
 
     //#endregion
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+    }
 
 }

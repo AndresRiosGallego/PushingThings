@@ -1,24 +1,24 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using ExitGames.Client.Photon;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public InputField roomNameInput;
     public Transform roomListContent;
     public GameObject roomListItemPrefab;
-    public Text statusText;
+    public Text statusText;    
 
     Dictionary<string, RoomInfo> cachedRooms = new Dictionary<string, RoomInfo>();
 
     void Start()
     {
-        statusText.text = "En Lobby...";
+        statusText.text = $"En Lobby... {PhotonNetwork.NickName}" ;        
     }
-
+    
 
     #region Crear Room
     public void CreateRoom()
@@ -38,7 +38,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         string roomName = roomNameInput.text;
 
         if (string.IsNullOrEmpty(roomName))
-            roomName = "Room_" + Random.Range(0, 1000);
+            roomName = "Room_" + UnityEngine.Random.Range(0, 1000);
 
         RoomOptions options = new RoomOptions
         {
@@ -59,7 +59,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         statusText.text = "Unido a sala";
-        PhotonNetwork.LoadLevel("GameScene");
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.LoadLevel("GameScene");
     }
 
     #endregion

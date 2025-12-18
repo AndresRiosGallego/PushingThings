@@ -1,6 +1,5 @@
-using Photon.Pun;
 using UnityEngine;
-using System.Collections;
+using Photon.Pun;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
