@@ -265,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289785402}
   - component: {fileID: 289785403}
+  - component: {fileID: 289785404}
   m_Layer: 0
   m_Name: PhotonManager
   m_TagString: Untagged
@@ -301,6 +302,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionStatusText: {fileID: 205766964}
   nikeName: {fileID: 1293230143}
+--- !u!114 &289785404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289785401}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249cf69dec829624890e495a8ade756d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1162950603192053380, guid: 011a1fb08d6917945a396e741aa29e37, type: 3}
+  SpawnPoint: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

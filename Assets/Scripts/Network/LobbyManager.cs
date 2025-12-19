@@ -56,6 +56,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region Unirse Room
+
+    //public void JoinRoom()
+    //{
+    //    PhotonNetwork.JoinRoom(roomNameInput.text);
+    //}
+
     public override void OnJoinedRoom()
     {
         statusText.text = "Unido a sala";
