@@ -1,13 +1,12 @@
 using Photon.Pun;
-using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CreateAndJoin : MonoBehaviourPunCallbacks
 {
-    public InputField input_Create;
-    public InputField input_Join;
+    [SerializeField] TMP_InputField input_Create;
+    [SerializeField] TMP_InputField input_Join;
 
     public void CreateRoom()
     {
@@ -27,6 +26,6 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Entraste a la sala correctamente");
-        PhotonNetwork.LoadLevel("GameScene");
+        PhotonNetwork.LoadLevel("GamePlay");
     }
 }

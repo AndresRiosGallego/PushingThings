@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public PhotonView PlayerPrefab;
     
-    public Transform spawnA;
-    public Transform spawnB;
+    public Transform spawnPlayerA;
+    public Transform spawnPlayerB;
 
     public Transform[] spawnCubesA;
     public Transform[] spawnCubesB;
@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         int actor = PhotonNetwork.LocalPlayer.ActorNumber;
 
         Vector3 pos = actor == 1
-            ? spawnA.position
-            : spawnB.position;
+            ? spawnPlayerA.position
+            : spawnPlayerB.position;
 
         PhotonNetwork.Instantiate(PlayerPrefab.name, pos, Quaternion.identity);
     }

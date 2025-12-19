@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
-using System.Linq;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class RoomList : MonoBehaviourPunCallbacks
 {
-    public GameObject RoomPrefab;
-    public GameObject []AllRooms;
+    [SerializeField] GameObject RoomPrefab;
+    [SerializeField] GameObject []AllRooms;
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         for (int i = 0; i < AllRooms.Length; i++)

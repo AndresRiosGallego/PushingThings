@@ -57,10 +57,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     #region Unirse Room
 
-    //public void JoinRoom()
-    //{
-    //    PhotonNetwork.JoinRoom(roomNameInput.text);
-    //}
+    public void JoinRoom()
+    {
+        PhotonNetwork.JoinRoom(roomNameInput.text);
+    }
 
     public override void OnJoinedRoom()
     {
