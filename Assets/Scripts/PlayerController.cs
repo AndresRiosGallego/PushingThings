@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviourPunCallbacks
@@ -9,11 +10,22 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public Material playerAMaterial;
     public Material playerBMaterial;
 
-    public Renderer bodyRenderer;
+    [SerializeField] private Renderer bodyRenderer;
+    [SerializeField] private Transform cameraHolder;
+    [SerializeField] private float cameraFix;
 
     void Start()
     {
         ApplyMaterialIfReady();
+        ConfigurarCamara();
+    }
+
+    private void ConfigurarCamara()
+    {
+        if(photonView.Owner.ActorNumber ==1)
+            cameraHolder.localPosition += new Vector3(cameraFix, 0f, 0f);
+        else
+            cameraHolder.localPosition -= new Vector3(cameraFix, 0f, 0f);
     }
 
     void ApplyMaterialIfReady()

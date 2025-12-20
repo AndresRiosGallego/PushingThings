@@ -31,16 +31,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         Vector3 pos = actor == 1
             ? spawnPlayerA.position
             : spawnPlayerB.position;
-
-        PhotonNetwork.Instantiate(PlayerPrefab.name, pos, Quaternion.identity);
+        
+        PhotonNetwork.Instantiate(PlayerPrefab.name, pos, Quaternion.identity);        
     }
 
     void SpawnCubes()
     {
         foreach (var t in spawnCubesA)
-            PhotonNetwork.Instantiate("CubeA", t.position, Quaternion.identity);
+            PhotonNetwork.Instantiate("CubeB", t.position, Quaternion.identity);
 
         foreach (var t in spawnCubesB)
-            PhotonNetwork.Instantiate("CubeB", t.position, Quaternion.identity);
+            PhotonNetwork.Instantiate("CubeA", t.position, Quaternion.identity);
     }
 }
